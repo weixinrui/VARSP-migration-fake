@@ -40,9 +40,4 @@ jobs:
           path: ./bin/Release/net10.0/publish/
 
       - name: Unit tests
-        uses: actions/run-dotnet-tests@v4
-        with:
-          test-pattern: 'VARSP-migration-fake.Tests/*.csproj'
-          test-runner: 'dotnet test'
-          test-framework: 'xunit'
-          test-runner-args: '--no-build --no-restore --verbosity detailed'
+        run: dotnet test ./VARSP-migration-fake.Tests/VARSP-migration-fake.Tests.csproj --no-build --no-restore --verbosity detailed
