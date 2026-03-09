@@ -35,15 +35,15 @@ jobs:
 
       - name: Authenticate to GitHub Packages (NuGet)
         run: >
-          dotnet nuget add source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
-          --name "GitHub Packages"
+          dotnet nuget update source "weixinrui GitHub Packages"
           --username "${{ github.actor }}"
           --password "${{ secrets.WEIXINRUI_TOKEN }}"
           --store-password-in-clear-text
+          --configfile "./nuget.config"
 
       # Runs a single command using the runners shell
       - name: Restore
-        run: dotnet restore ./VARSP-migration-fake.csproj
+        run: dotnet restore --configfile "./nuget.config" ./VARSP-migration-fake.csproj
 
       # Runs a set of commands using the runners shell
       - name: Build
