@@ -37,4 +37,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: production-artifacts
-          path: ./bin/Release/publish/
+          path: ./bin/Release/net10.0/publish/
