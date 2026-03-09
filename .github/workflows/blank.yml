@@ -19,11 +19,27 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Authenticate to GitHub Packages (NuGet)
+        run: >
+          dotnet nuget add source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+          --name "GitHub Packages"
+          --username "${{ github.actor }}"
+          --password "${{ secrets.WEIXINRUI_TOKEN }}"
+          --store-password-in-clear-text
 
       # Runs a single command using the runners shell
       - name: Restore
