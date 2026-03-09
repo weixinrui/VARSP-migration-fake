@@ -59,7 +59,6 @@ jobs:
         run: >
           dotnet test ./VARSP-migration-fake.Tests/VARSP-migration-fake.Tests.csproj
           -c Release
-          --configfile "./nuget.config"
           --collect:"XPlat Code Coverage"
           --results-directory ./TestResults
           --verbosity normal
